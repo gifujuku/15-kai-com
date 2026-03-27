@@ -1,0 +1,1436 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="bingbot" content="noindex, nofollow">
+<meta http-equiv="X-Robots-Tag" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.ico">
+<title>十五会 | 若手経営者コミュニティ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&family=Space+Grotesk:wght@400;500;700;800&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #FAFAFA;
+  --bg2:     #F0F0FF;
+  --bg3:     #FFFFFF;
+  --dark:    #1A1A2E;
+  --text:    #2D2D3A;
+  --muted:   #6B7280;
+  --accent:  #5B4DFF;
+  --accent2: #00C2FF;
+  --accent3: #FF3CAF;
+  --green:   #00D97E;
+  --orange:  #FF6B35;
+  --white:   #FFFFFF;
+
+  /* 後方互換（インラインスタイル用） */
+  --gold:    #5B4DFF;
+  --gold2:   #7C6FFF;
+  --gold3:   #A89FFF;
+  --navy:    #1A1A2E;
+  --navy2:   #F0F0FF;
+  --navy3:   #FAFAFA;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+/* ─── FADE-IN ANIMATION ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  height: 68px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(91,77,255,0.15);
+  transition: background 0.4s, box-shadow 0.4s;
+}
+nav.scrolled {
+  background: rgba(255,255,255,0.97);
+  box-shadow: 0 2px 20px rgba(91,77,255,0.08);
+}
+
+.nav-logo {
+  display: flex; align-items: baseline; gap: 10px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo-kanji {
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 22px; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.1em;
+  line-height: 1;
+}
+.nav-logo-latin {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px; font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.35em;
+}
+
+.nav-menu {
+  display: flex; align-items: center; gap: 0;
+  list-style: none;
+}
+.nav-menu li a {
+  display: block;
+  padding: 0 18px;
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.nav-menu li a:hover { color: var(--accent); }
+.nav-menu li a .ja {
+  display: block; font-size: 9px;
+  letter-spacing: 0.12em; color: var(--muted);
+  margin-top: 2px;
+}
+
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent);
+  color: #FFFFFF;
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 10px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.25s, transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+}
+.nav-cta:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(91,77,255,0.35); }
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 32px 80px;
+  text-align: center;
+  background: linear-gradient(135deg, #FAFAFA 0%, #EEF0FF 50%, #F5F0FF 100%);
+}
+
+#hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(91,77,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91,77,255,0.06) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: gridMove 20s linear infinite;
+}
+@keyframes gridMove {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(80px); }
+}
+
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none; z-index: 1;
+}
+.orb-1 {
+  width: 500px; height: 500px;
+  top: -80px; left: -60px;
+  background: radial-gradient(circle, rgba(91,77,255,0.28), transparent 70%);
+  animation: orbFloat1 9s ease-in-out infinite;
+}
+.orb-2 {
+  width: 420px; height: 420px;
+  bottom: -40px; right: -30px;
+  background: radial-gradient(circle, rgba(0,194,255,0.24), transparent 70%);
+  animation: orbFloat2 11s ease-in-out infinite;
+}
+
+/* ─── 浮遊blob3つ目（ヒーロー内） ─── */
+#hero::after {
+  content: '';
+  position: absolute;
+  width: 360px; height: 360px;
+  top: 35%; left: 52%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,60,175,0.2), transparent 70%);
+  filter: blur(65px);
+  pointer-events: none; z-index: 1;
+  animation: orbFloat3 13s ease-in-out infinite;
+}
+
+/* hero内コンテンツをblobより前面に */
+#hero > *:not(.orb):not(canvas) { position: relative; z-index: 3; }
+
+/* 各セクションにふわふわblob */
+#about, #program, #speakers, #schedule { overflow: hidden; }
+#about::after, #program::after, #speakers::after, #schedule::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+#about::after {
+  width: 500px; height: 500px;
+  top: 5%; right: -150px;
+  background: radial-gradient(circle, rgba(91,77,255,0.12), transparent 70%);
+  animation: orbFloat1 14s ease-in-out infinite;
+}
+#program::after {
+  width: 450px; height: 450px;
+  bottom: 0; left: -120px;
+  background: radial-gradient(circle, rgba(0,194,255,0.1), transparent 70%);
+  animation: orbFloat2 12s ease-in-out infinite;
+}
+#speakers::after {
+  width: 500px; height: 500px;
+  top: 10%; right: -150px;
+  background: radial-gradient(circle, rgba(255,60,175,0.1), transparent 70%);
+  animation: orbFloat3 16s ease-in-out infinite;
+}
+#schedule::after {
+  width: 450px; height: 450px;
+  bottom: 0; left: -120px;
+  background: radial-gradient(circle, rgba(0,217,126,0.1), transparent 70%);
+  animation: orbFloat1 10s ease-in-out infinite reverse;
+}
+.section-inner { position: relative; z-index: 1; }
+
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(20px, -30px) scale(1.06); }
+  66%  { transform: translate(-15px, 15px) scale(0.97); }
+}
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%  { transform: translate(-25px, -20px) scale(1.04); }
+  70%  { transform: translate(18px, 25px) scale(0.96); }
+}
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  30%  { transform: translate(30px, 20px) scale(1.08); }
+  60%  { transform: translate(-20px, -25px) scale(0.94); }
+}
+
+.hero-eyebrow {
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 11px; letter-spacing: 0.4em; color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 32px;
+  animation: fadeUp 1s ease 0.2s both;
+}
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: ''; display: block;
+  width: 40px; height: 1px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  opacity: 0.7;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-tagbox {
+  display: inline-block;
+  padding: 8px 24px;
+  margin-bottom: 28px;
+  background: rgba(91,77,255,0.08);
+  border: 1px solid rgba(91,77,255,0.25);
+  border-radius: 100px;
+  animation: fadeUp 1s ease 0.3s both;
+}
+
+.hero-tagbox-text {
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.2em; color: var(--accent);
+}
+
+.hero-title {
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: clamp(42px, 7vw, 82px);
+  font-weight: 900;
+  line-height: 2.1;
+  letter-spacing: 0.15em;
+  color: var(--dark);
+  margin-bottom: 28px;
+  animation: fadeUp 1s ease 0.4s both;
+  overflow: visible;
+}
+.hero-title .num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.0em;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  display: inline-block;
+  line-height: 0.82;
+  vertical-align: 0em;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tsume {
+  letter-spacing: -0.15em;
+}
+
+.hero-sub {
+  font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+  font-size: clamp(18px, 3vw, 30px);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  margin-bottom: 48px;
+  animation: fadeUp 1s ease 0.5s both;
+}
+.hero-sub em {
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.hero-desc {
+  font-size: 14px; font-weight: 300;
+  line-height: 2.0;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto 56px;
+  letter-spacing: 0.08em;
+  animation: fadeUp 1s ease 0.6s both;
+}
+
+.hero-btns {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 1s ease 0.7s both;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #FFFFFF;
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 16px 44px;
+  border-radius: 8px;
+  text-decoration: none;
+  position: relative; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 4px 20px rgba(91,77,255,0.35);
+}
+.btn-primary::after {
+  content: ''; position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: left 0.4s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(91,77,255,0.5); opacity: 0.92; }
+.btn-primary:hover::after { left: 100%; }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 13px; font-weight: 500;
+  letter-spacing: 0.12em;
+  padding: 16px 40px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+.btn-secondary:hover {
+  background: rgba(91,77,255,0.08);
+  box-shadow: 0 0 20px rgba(91,77,255,0.15);
+}
+
+.back-to-top {
+  position: fixed; bottom: 32px; right: 32px; width: 48px; height: 48px;
+  background: #FFFFFF;
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  cursor: pointer; z-index: 800; opacity: 0; transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(91,77,255,0.2);
+}
+.back-to-top.visible { opacity: 1; transform: translateY(0); }
+.back-to-top:hover { background: rgba(91,77,255,0.06); box-shadow: 0 6px 28px rgba(91,77,255,0.3); }
+.back-to-top svg { width: 14px; height: 14px; fill: none; stroke: var(--accent); stroke-width: 1.5; }
+.back-to-top-label { font-size: 7px; letter-spacing: 0.2em; color: var(--accent); font-family: 'Space Grotesk', sans-serif; font-weight: 500; }
+
+/* ─── SECTION COMMON ─── */
+section { position: relative; }
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 120px 48px;
+}
+
+.section-label {
+  display: inline-flex; align-items: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.45em;
+  color: var(--accent); text-transform: uppercase;
+  background: rgba(91,77,255,0.1);
+  border-radius: 100px;
+  padding: 6px 16px;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+  color: var(--dark);
+}
+.section-title .accent {
+  color: var(--accent);
+}
+.section-lead {
+  font-size: 14px; font-weight: 400;
+  line-height: 2.1; color: var(--muted);
+  letter-spacing: 0.06em;
+  max-width: 580px;
+}
+
+/* ─── ABOUT ─── */
+#about { background: #FFFFFF; }
+#about .section-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.about-left {}
+.about-right {}
+
+.name-display {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 120px; font-weight: 700;
+  color: rgba(91,77,255,0.05);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  position: absolute;
+  top: 0; right: -20px;
+  user-select: none;
+}
+
+.about-number-block {
+  display: flex; gap: 48px; margin-top: 48px;
+}
+.about-stat {}
+.about-stat .num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 64px; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  display: block;
+}
+.about-stat .unit { font-size: 20px; }
+.about-stat .label {
+  font-size: 11px; font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  margin-top: 6px;
+}
+
+/* ─── TARGETS ─── */
+#targets { background: var(--bg2); }
+#targets .section-inner { text-align: left; }
+.targets-header { max-width: 660px; margin: 0 auto 24px; }
+
+.target-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  max-width: 800px; margin: 0 auto;
+}
+.target-item {
+  background: #FFFFFF;
+  border: 1px solid rgba(91,77,255,0.1);
+  border-radius: 16px;
+  padding: 36px 40px;
+  display: flex; align-items: flex-start; gap: 20px;
+  text-align: left;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
+}
+.target-item:hover {
+  box-shadow: 0 8px 32px rgba(91,77,255,0.15);
+  border-color: rgba(91,77,255,0.3);
+  transform: translateY(-2px);
+}
+.target-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px; font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: -4px;
+}
+.target-text {
+  font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+  font-size: 14px; font-weight: 700;
+  line-height: 1.8; letter-spacing: 0.05em;
+  color: var(--dark);
+}
+.target-text span {
+  display: block;
+  font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+  font-size: 12px; font-weight: 300;
+  color: var(--muted);
+  margin-top: 6px;
+  letter-spacing: 0.05em;
+}
+
+/* ─── PROGRAM ─── */
+#program { background: #FFFFFF; }
+#program .section-inner { display: block; }
+.program-header { margin-bottom: 64px; display: block; }
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+.timeline::before {
+  content: ''; position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), rgba(91,77,255,0.1));
+}
+
+.tl-item {
+  position: relative;
+  padding: 0 0 48px 40px;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 32px; align-items: start;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  position: absolute;
+  left: -5px; top: 4px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(91,77,255,0.5);
+}
+.tl-time {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px; font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+.tl-time span {
+  display: block;
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 10px; font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.25em;
+  margin-top: 4px;
+}
+.tl-content {}
+.tl-content h3 {
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 17px; font-weight: 700;
+  letter-spacing: 0.06em; margin-bottom: 8px;
+  color: var(--dark);
+}
+.tl-content p {
+  font-size: 13px; font-weight: 300;
+  line-height: 1.9; color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* ─── MEMBERS ─── */
+#speakers { background: var(--bg); }
+#speakers .section-inner { display: block; }
+.speakers-header { margin-bottom: 64px; display: block; }
+
+.speaker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.speaker-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 16px;
+  padding: 40px 32px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative; overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+.speaker-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+  opacity: 0; transition: opacity 0.3s;
+}
+.speaker-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(91,77,255,0.15);
+}
+.speaker-card:hover::before { opacity: 1; }
+
+.speaker-role {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px; letter-spacing: 0.4em;
+  color: var(--accent); text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 700;
+}
+.speaker-role::after { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); opacity: 0.4; }
+
+.speaker-header {
+  display: flex; align-items: flex-end; gap: 14px;
+  margin-bottom: 12px;
+}
+.speaker-icon {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: rgba(91,77,255,0.08);
+  border: 1px solid rgba(91,77,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.speaker-icon span {
+  font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--accent);
+}
+
+.speaker-name {
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 18px; font-weight: 700;
+  letter-spacing: 0.08em; margin-bottom: 8px;
+  display: flex; align-items: flex-end; gap: 4px;
+  color: var(--dark);
+}
+.speaker-initial {
+  font-size: 2.4em;
+  font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.speaker-age {
+  display: inline;
+  font-size: 11px; color: var(--muted);
+  letter-spacing: 0.15em;
+  font-weight: 300;
+}
+.speaker-yomi {
+  display: inline;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; color: var(--muted);
+  letter-spacing: 0.12em;
+  font-weight: 400;
+}
+.speaker-yomi::before { content: '　'; }
+.speaker-yomi::after { display: block; content: ''; margin-bottom: 14px; }
+.speaker-company {
+  font-size: 12px; font-weight: 300;
+  line-height: 1.9; color: var(--text);
+  letter-spacing: 0.05em;
+}
+.speaker-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 80px; font-weight: 800;
+  color: rgba(91,77,255,0.06);
+  position: absolute; bottom: -10px; right: 16px;
+  line-height: 1; user-select: none;
+}
+
+/* ─── SCHEDULE ─── */
+#schedule { background: var(--bg2); }
+#schedule .section-inner { display: block; }
+.schedule-header { margin-bottom: 64px; display: block; }
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.sched-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(91,77,255,0.1);
+  border-radius: 16px;
+  padding: 36px 32px;
+  position: relative;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
+}
+.sched-card:hover {
+  box-shadow: 0 8px 32px rgba(91,77,255,0.12);
+  border-color: rgba(91,77,255,0.2);
+  transform: translateY(-2px);
+}
+.sched-no {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  color: var(--accent2); letter-spacing: 0.3em;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.sched-date {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px; font-weight: 500;
+  color: var(--accent); letter-spacing: 0.08em; margin-bottom: 10px;
+}
+.sched-theme {
+  font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+  font-size: clamp(18px, 2.2vw, 24px); font-weight: 900;
+  letter-spacing: 0.05em; color: var(--dark); margin-bottom: 10px; line-height: 1.4;
+}
+.sched-capacity {
+  display: inline-block; margin-top: 8px; padding: 3px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  color: var(--accent);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+}
+.sched-detail {
+  font-size: 11px; font-weight: 300;
+  color: var(--muted); line-height: 1.9;
+  letter-spacing: 0.05em;
+}
+
+/* ─── INFO ─── */
+#info { background: #FFFFFF; }
+#info .section-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+.info-table { width: 100%; border-collapse: collapse; }
+.info-table tr { border-bottom: 1px solid rgba(0,0,0,0.08); }
+.info-table td {
+  padding: 20px 0;
+  font-size: 13px; vertical-align: top;
+}
+.info-table td:first-child {
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-weight: 700; color: var(--accent);
+  letter-spacing: 0.1em; width: 90px;
+  font-size: 12px;
+}
+.info-table td:last-child {
+  font-weight: 300; line-height: 1.9;
+  color: var(--text);
+  letter-spacing: 0.06em;
+}
+
+.info-cta-box {
+  background: linear-gradient(135deg, rgba(91,77,255,0.08), rgba(0,194,255,0.06));
+  border: 1px solid rgba(91,77,255,0.2);
+  border-radius: 20px;
+  padding: 48px 40px;
+}
+.info-cta-box h3 {
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 22px; font-weight: 700;
+  letter-spacing: 0.06em; margin-bottom: 16px;
+  color: var(--dark);
+}
+.info-cta-box p {
+  font-size: 13px; font-weight: 300;
+  line-height: 2.0; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 32px;
+}
+.info-price {
+  margin: 24px 0;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.info-price .amount {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 52px; font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.info-price .unit { font-size: 14px; color: var(--muted); font-weight: 300; }
+
+/* ─── CTA BANNER ─── */
+#cta-banner {
+  background: linear-gradient(135deg, var(--dark), #0D0D2E);
+  text-align: center;
+  padding: 120px 48px;
+  position: relative; overflow: hidden;
+}
+#cta-banner::before {
+  content: '十五会';
+  position: absolute;
+  font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+  font-size: 300px; font-weight: 900;
+  color: rgba(91,77,255,0.05);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap; user-select: none;
+  letter-spacing: 0.1em;
+}
+.cta-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.5em;
+  color: var(--accent2); margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.cta-headline {
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: clamp(28px, 4vw, 48px); font-weight: 900;
+  line-height: 1.5; letter-spacing: 0.04em;
+  margin-bottom: 16px;
+  color: #FFFFFF;
+}
+.cta-sub {
+  font-size: 14px; font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.1em; margin-bottom: 48px;
+  line-height: 2;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: #FAFAFA;
+  border-top: 2px solid #EBEBEB;
+  padding: 80px 48px;
+  display: flex; justify-content: center; align-items: center;
+  flex-wrap: wrap; gap: 24px;
+  text-align: center;
+}
+.footer-logo {
+  font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 18px; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.2em;
+}
+.footer-logo span { display: block; font-size: 10px; color: var(--muted); font-weight: 400; letter-spacing: 0.3em; margin-top: 4px; font-family: 'Space Grotesk', sans-serif; -webkit-text-fill-color: var(--muted); }
+.footer-org {
+  font-size: 11px; color: var(--muted);
+  letter-spacing: 0.15em; font-weight: 300;
+  text-align: right; line-height: 1.8;
+}
+
+/* ─── ACCENT DIVIDER ─── */
+.gold-divider {
+  width: 48px; height: 3px;
+  background: linear-gradient(to right, var(--accent), var(--accent2));
+  border-radius: 2px;
+  margin: 32px 0;
+}
+
+/* ─── HAMBURGER ─── */
+.hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; flex-shrink: 0; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--accent); transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center; }
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+@media (max-width: 900px) { .hamburger { display: flex; } }
+.sp-drawer { display: none; position: fixed; top: 68px; left: 0; right: 0; background: #FFFFFF; border-bottom: 1px solid rgba(91,77,255,0.2); z-index: 899; max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease; }
+.sp-drawer.open { max-height: 600px; padding: 8px 0 24px; }
+@media (max-width: 900px) { .sp-drawer { display: block; } }
+.sp-drawer ul { list-style: none; padding: 0; }
+.sp-drawer ul li { border-bottom: 1px solid rgba(0,0,0,0.06); }
+.sp-drawer ul li a { display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.2em; color: var(--text); text-decoration: none; transition: background 0.2s, color 0.2s; }
+.sp-drawer ul li a:hover { background: rgba(91,77,255,0.06); color: var(--accent); }
+.sp-drawer ul li a .sp-en { font-family: 'Space Grotesk', sans-serif; font-size: 10px; font-weight: 600; color: var(--accent); letter-spacing: 0.3em; opacity: 0.8; }
+.sp-drawer-cta { margin: 16px 32px 0; }
+.sp-drawer-cta a { display: block; text-align: center; background: var(--accent); color: #FFFFFF; font-family: 'M PLUS Rounded 1c', 'Space Grotesk', 'Noto Sans JP', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; padding: 14px 24px; border-radius: 8px; text-decoration: none; transition: opacity 0.25s; }
+.sp-drawer-cta a:hover { opacity: 0.88; }
+
+/* ─── TITLE LAST BLOCK ─── */
+.title-last { display: block; margin-top: 0.3em; }
+.title-last .num { vertical-align: -0.15em; letter-spacing: 0.1em; }
+@media (min-width: 769px) {
+  .sp-only-br { display: none; }
+  .title-last { display: inline; margin-top: 0; }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .nav-menu { display: none; }
+}
+@media (max-width: 768px) {
+  nav { padding: 0 24px; }
+  .section-inner { padding: 80px 24px; }
+  #about .section-inner { grid-template-columns: 1fr; gap: 48px; }
+  .target-grid { grid-template-columns: 1fr; }
+  #info .section-inner { grid-template-columns: 1fr; gap: 48px; }
+  .about-number-block { gap: 32px; }
+  #about .section-lead { padding: 0 12px; }
+  .schedule-grid { grid-template-columns: 1fr; }
+  .schedule-grid .sched-card { grid-column: auto !important; grid-row: auto !important; }
+  footer { flex-direction: column; text-align: center; }
+  .footer-org { text-align: center; }
+  .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .back-to-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <span class="nav-logo-kanji">十五会</span>
+    <span class="nav-logo-latin">JUGOKAI</span>
+  </a>
+
+  <ul class="nav-menu">
+    <li><a href="#about">ABOUT<span class="ja">会について</span></a></li>
+    <li><a href="#program">PROGRAM<span class="ja">プログラム</span></a></li>
+    <li><a href="#speakers">MEMBERS<span class="ja">メンバー</span></a></li>
+    <li><a href="#schedule">SCHEDULE<span class="ja">開催予定</span></a></li>
+    <li><a href="#info">APPLY<span class="ja">参加申込</span></a></li>
+    <li><a href="#parent-org">STEP UP<span class="ja">さらに学ぶ</span></a></li>
+  </ul>
+
+  <a href="https://docs.google.com/forms/d/1JO6ucxy58AjBJt4Yb2q5YET1Dur6r0jncnX8UmDQgCI/edit" class="nav-cta" target="_blank">参加を申し込む →</a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<div class="sp-drawer" id="spDrawer">
+  <ul>
+    <li><a href="#about" class="sp-menu-link">会について<span class="sp-en">ABOUT</span></a></li>
+    <li><a href="#program" class="sp-menu-link">プログラム<span class="sp-en">PROGRAM</span></a></li>
+    <li><a href="#speakers" class="sp-menu-link">メンバー<span class="sp-en">MEMBERS</span></a></li>
+    <li><a href="#schedule" class="sp-menu-link">開催予定<span class="sp-en">SCHEDULE</span></a></li>
+    <li><a href="#info" class="sp-menu-link">参加申込<span class="sp-en">APPLY</span></a></li>
+    <li><a href="#parent-org" class="sp-menu-link">さらに学ぶ<span class="sp-en">STEP UP</span></a></li>
+  </ul>
+  <div class="sp-drawer-cta"><a href="https://docs.google.com/forms/d/1JO6ucxy58AjBJt4Yb2q5YET1Dur6r0jncnX8UmDQgCI/edit" target="_blank">参加を申し込む →</a></div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="hero-eyebrow" style="font-size:14px; letter-spacing:0.3em;">若手経営者の学びの会</div>
+
+  <div class="hero-tagbox">
+    <span class="hero-tagbox-text">岐阜実践経営塾 × 次世代経営者</span>
+  </div>
+
+  <h1 class="hero-title">
+    <span class="num">10</span>年で<br>売<span class="tsume">上・</span>利益<br class="sp-only-br"><span class="title-last"><span class="num">5</span>倍へ</span>
+  </h1>
+
+  <p class="hero-sub" style="margin-top:32px;">志ある経営者だけが集う<br><em>本気の学びの場</em></p>
+
+  <p class="hero-desc">
+    単なる交流会ではありません。<br>
+    高い志を持つ経営者が集まり、共に人格を磨き、<br>
+    経営者としての在り方を本音で学び合う場です。
+  </p>
+
+  <div class="hero-btns">
+    <a href="https://docs.google.com/forms/d/1JO6ucxy58AjBJt4Yb2q5YET1Dur6r0jncnX8UmDQgCI/edit" class="btn-primary" target="_blank">参加を申し込む</a>
+    <a href="#about" class="btn-secondary">詳細を見る</a>
+  </div>
+
+</section>
+
+<a href="#hero" class="back-to-top" id="backToTop" aria-label="ページトップへ"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="18 15 12 9 6 15"></polyline></svg><span class="back-to-top-label">TOP</span></a>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner" style="display:block;">
+    <div class="about-left reveal" style="max-width:100%;">
+      <div class="section-label">About</div>
+      <h2 class="section-title" style="white-space:nowrap;">「十五」が意味する<br><span class="accent" style="margin-left:1em;">明確な目標</span></h2>
+      <div class="gold-divider"></div>
+      <p class="section-lead">
+        「十五」とは、<strong style="color:var(--gold2)">10年で売上・利益を5倍に伸ばす</strong>という数値目標そのもの。旧盛和塾（稲盛和夫塾長）の学び、中村天風思想、陽明学など、経営に直結する本質的な学びを通じて、自社と自分自身の成長に本気で向き合う会です。
+      </p>
+      <div class="gold-divider"></div>
+      <h2 class="section-title" style="white-space:nowrap; margin-bottom:16px;">こんな経営者の為の会です</h2>
+    </div>
+
+    <div class="target-grid">
+      <div class="target-item reveal reveal-delay-1">
+        <div class="target-num">01</div>
+        <div class="target-text">
+          本気で会社を成長させたい
+          <span>売上・利益を数倍にする覚悟がある方</span>
+        </div>
+      </div>
+      <div class="target-item reveal reveal-delay-2">
+        <div class="target-num">02</div>
+        <div class="target-text">
+          経営を共に養う同志が欲しい
+          <span>互いに切磋琢磨できる仲間を求めている方</span>
+        </div>
+      </div>
+      <div class="target-item reveal reveal-delay-3">
+        <div class="target-num">03</div>
+        <div class="target-text">
+          経営の本質を本気で学びたい
+          <span>盛和塾・天風思想・陽明学に関心のある方</span>
+        </div>
+      </div>
+      <div class="target-item reveal reveal-delay-4">
+        <div class="target-num">04</div>
+        <div class="target-text">
+          本音で話せる経営者の場が欲しい
+          <span>単なる名刺交換・交流ではなく深い議論を求める方</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 数字統計ブロック（ABOUTから移動） 
+    <div style="display:flex; gap:60px; justify-content:center; margin-top:5px; margin-bottom:10px; flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:88px; font-weight:300; font-style:italic; color:var(--gold); line-height:1;">5<span style="font-size:40px;">倍</span></div>
+        <div style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.5); letter-spacing:0.2em; margin-top:8px;">10年後の売上・利益目標</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:88px; font-weight:300; font-style:italic; color:var(--gold); line-height:1;">4<span style="font-size:40px;">回</span></div>
+        <div style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.5); letter-spacing:0.2em; margin-top:8px;">年間開催回数</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:88px; font-weight:300; font-style:italic; color:var(--gold); line-height:1; white-space:nowrap;">20<span style="font-size:48px;">〜40</span></div>
+        <div style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.5); letter-spacing:0.2em; margin-top:8px;">代の経営者が対象</div>
+      </div>
+    </div>
+  </div>
+</section>-->
+
+<!-- PROGRAM -->
+<section id="program">
+  <div class="section-inner">
+    <div class="program-header reveal">
+      <div class="section-label">Program</div>
+      <h2 class="section-title">当日の<span class="accent">プログラム</span></h2>
+      <p class="section-lead">勉強会と懇親会の2部構成。合計4時間、深い学びと対話の場。</p>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item reveal reveal-delay-1">
+        <div class="tl-dot"></div>
+        <div class="tl-time">16:00<span>DISCUSSION</span></div>
+        <div class="tl-content">
+          <h3>経営課題パネルディスカッション</h3>
+          <p>各回テーマに沿って経営課題を深掘り。<span style="color:var(--gold);">「経営理念」「管理会計・数値管理」「人・組織」「経営者の心の在り方」</span>を年4回で掘り下げます。</p>
+        </div>
+      </div>
+      <div class="tl-item reveal reveal-delay-2">
+        <div class="tl-dot"></div>
+        <div class="tl-time">17:30<span>SESSION</span></div>
+        <div class="tl-content">
+          <h3>代表・副代表によるトークセッション</h3>
+          <p>年商100億超の創業社長・百年企業の後継者・上場企業役員・税理士法人代表が、各テーマについて対談形式で本音を語ります。</p>
+        </div>
+      </div>
+      <div class="tl-item reveal reveal-delay-3">
+        <div class="tl-dot"></div>
+        <div class="tl-time">18:15<span>DINNER</span></div>
+        <div class="tl-content">
+          <h3>懇親会</h3>
+          <p>食事を囲みながら本音の対話を続けます。20:00 解散（二次会なし）。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERS -->
+<section id="speakers">
+  <div class="section-inner">
+    <div class="speakers-header reveal">
+      <div class="section-label">MEMBERS</div>
+      <h2 class="section-title">登壇者<span class="accent">プロフィール</span></h2>
+      <p class="section-lead">岐阜を代表する若手経営者・幹部が、経験と本音を語ります。</p>
+    </div>
+    <div class="speaker-grid">
+      <div class="speaker-card reveal reveal-delay-1">
+        <div class="speaker-role">代表</div>
+        <div class="speaker-header">
+          <!-- <div class="speaker-icon"><span>下真</span></div> -->
+          <div class="speaker-name"><span class="speaker-initial">下</span>田平 真樹</div>
+        </div>
+        <div class="speaker-age">47歳</div>
+        <div class="speaker-yomi">Shimodaira Masaki</div>
+        <div class="speaker-company">ビッグステップ㈱・岐阜電力㈱<br>代表取締役社長<br><br>創業社長 · 19期 · 従業員260名<br>年商140億円</div>
+        <div class="speaker-number">01</div>
+      </div>
+      <div class="speaker-card reveal reveal-delay-2">
+        <div class="speaker-role">副代表</div>
+        <div class="speaker-header">
+          <!-- <div class="speaker-icon"><span>澤正</span></div> -->
+          <div class="speaker-name"><span class="speaker-initial">澤</span>田 正</div>
+        </div>
+        <div class="speaker-age">41歳</div>
+        <div class="speaker-yomi">Sawada Tadashi</div>
+        <div class="speaker-company">㈱マルエイ<br>代表取締役社長<br><br>創業141年 · グループ従業員1200名<br>グループ年商430億円</div>
+        <div class="speaker-number">02</div>
+      </div>
+      <div class="speaker-card reveal reveal-delay-3">
+        <div class="speaker-role">副代表</div>
+        <div class="speaker-header">
+          <!-- <div class="speaker-icon"><span>尾弘</span></div> -->
+          <div class="speaker-name"><span class="speaker-initial">尾</span>松 弘崇</div>
+        </div>
+        <div class="speaker-age">31歳</div>
+        <div class="speaker-yomi">Omatsu Hirotaka</div>
+        <div class="speaker-company">㈱メイホーホールディングス<br>取締役 常務執行役員<br><br>2021年上場 · 連結年商130億円<br>従業員1,200名</div>
+        <div class="speaker-number">03</div>
+      </div>
+
+      <div class="speaker-card reveal reveal-delay-4">
+        <div class="speaker-role">副代表</div>
+        <div class="speaker-header">
+          <!-- <div class="speaker-icon"><span>澤直</span></div> -->
+          <div class="speaker-name"><span class="speaker-initial">澤</span>田 直哉</div>
+        </div>
+        <div class="speaker-age">34歳</div>
+        <div class="speaker-yomi">Sawada Naoya</div>
+        <div class="speaker-company">㈱マルエイソリューション<br>代表取締役社長<br><br>グループ中核企業 · 年商16億円<br>従業員80名</div>
+        <div class="speaker-number">04</div>
+      </div>
+
+      <div class="speaker-card reveal reveal-delay-5">
+        <div class="speaker-role">副代表</div>
+        <div class="speaker-header">
+          <!-- <div class="speaker-icon"><span>片新</span></div> -->
+          <div class="speaker-name"><span class="speaker-initial">片</span>桐 新之助</div>
+        </div>
+        <div class="speaker-age">40歳</div>
+        <div class="speaker-yomi">Katagiri Shinnosuke</div>
+        <div class="speaker-company">税理士法人<br>タックスアンドマネジメント<br>代表社員税理士<br><br>創業50年 · 従業員24名</div>
+        <div class="speaker-number">05</div>
+      </div>
+      <div class="speaker-card reveal reveal-delay-6">
+        <div class="speaker-role">Special Advisor</div>
+        <div class="speaker-header">
+          <!-- <div class="speaker-icon"><span>秋祥</span></div> -->
+          <div class="speaker-name"><span class="speaker-initial">秋</span>元 祥治</div>
+        </div>
+        <div class="speaker-age"></div>
+        <div class="speaker-yomi">Akimoto Shoji</div>
+        <div class="speaker-company">岡崎ビジネスサポートセンター・オカビズ　チーフコーディネーター<br>武蔵野大学アントレプレナーシップ学部 EMC 教授<br>NPO法人G-net 理事</div>
+        <div class="speaker-number">06</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="section-inner">
+    <div class="schedule-header reveal">
+      <div class="section-label">Schedule</div>
+      <h2 class="section-title">今後の<span class="accent">開催予定</span></h2>
+      <p class="section-lead">年4回、各回テーマを変えて開催。毎年3月・5月・8月・10月。</p>
+    </div>
+    <div class="schedule-grid">
+      <div class="sched-card reveal reveal-delay-1">
+        <div class="sched-no">SESSION 01</div>
+        <div class="sched-theme">経営理念</div>
+        <div class="sched-date">2026年 5月15日（金）</div>
+        <div class="sched-detail">16:00 – 20:00　じゅうろくプラザ4F研修室1<br><span class="sched-capacity">定員 30名</span></div>
+      </div>
+      <div class="sched-card reveal reveal-delay-2">
+        <div class="sched-no">SESSION 02</div>
+        <div class="sched-theme">管理会計・<br>数値管理</div>
+        <div class="sched-date">2026年 8月21日（金）</div>
+        <div class="sched-detail">16:00 – 20:00　岐阜商工会議所1階A会議室<br><span class="sched-capacity">定員 30名</span></div>
+      </div>
+      <div class="sched-card reveal reveal-delay-3">
+        <div class="sched-no">SESSION 03</div>
+        <div class="sched-theme">人・組織</div>
+        <div class="sched-date">2026年 10月15日（木）</div>
+        <div class="sched-detail">16:00 – 20:00　岐阜商工会議所1階A会議室<br><span class="sched-capacity">定員 30名</span></div>
+      </div>
+      <div class="sched-card reveal reveal-delay-4" style="grid-column:1; grid-row:2;">
+        <div class="sched-no">SESSION 04</div>
+        <div class="sched-theme">経営者の心の<br>在り方</div>
+        <div class="sched-date">2027年 3月16日（火）</div>
+        <div class="sched-detail">16:00 – 20:00　岐阜市内<br><span class="sched-capacity">定員 30名</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section id="info">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Apply</div>
+      <h2 class="section-title">開催情報・<span class="accent">参加申込</span></h2>
+      <div class="gold-divider"></div>
+      <table class="info-table">
+        <tr>
+          <td>頻度</td>
+          <td>年 4 回</td>
+        </tr>
+        <tr>
+          <td>場所</td>
+          <td>岐阜市内<br>（じゅうろくプラザ、岐阜商工会議所 等）</td>
+        </tr>
+        <tr>
+          <td>時間</td>
+          <td>16:00 開始 → 18:00 勉強会終了<br>18:15 → 20:00 懇親会（二次会なし）</td>
+        </tr>
+        <tr>
+          <td>対象</td>
+          <td>20〜40代の経営トップ、またはそれに準ずる方</td>
+        </tr>
+        <tr>
+          <td>申込</td>
+          <td>フォームより事前申込</td>
+        </tr>
+      </table>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="info-cta-box">
+        <h3>参加申込はこちら</h3>
+        <p>参加費は当日現金にてお支払いください。懇親会までのご参加を原則とさせていただいております。岐阜実践経営塾にて領収書を発行いたします。</p>
+        <div class="info-price">
+          <span class="amount">8,000</span>
+          <span class="unit">円（税込）／ 1回あたり</span>
+        </div>
+        <a href="https://docs.google.com/forms/d/1JO6ucxy58AjBJt4Yb2q5YET1Dur6r0jncnX8UmDQgCI/edit" target="_blank" class="btn-primary" style="width:100%; justify-content:center; margin-bottom:16px;">
+          フォームから申し込む →
+        </a>
+        <p style="font-size:11px; color:rgba(255,255,255,0.35); letter-spacing:0.1em; line-height:1.8;">
+
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    十五会
+    <span>JUGOKAI — 若手経営者の学びの会</span>
+  </div>
+</footer>
+
+
+
+<!-- PARENT ORG — STEP UP -->
+<section id="parent-org" style="background:#021535; border-top:1px solid rgba(201,168,76,0.2); padding:80px 48px;">
+  <div style="max-width:900px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:48px;" class="reveal">
+      <p style="font-size:11px; letter-spacing:0.4em; color:var(--gold); margin-bottom:16px; text-transform:uppercase;">Step Up</p>
+      <h2 style="font-family:'Noto Serif JP',serif; font-size:clamp(20px,3vw,30px); font-weight:700; letter-spacing:0.08em; margin-bottom:16px; line-height:1.7; color:#ffffff;">
+        さらに学びを深めたい方へ
+      </h2>
+      <div style="width:40px; height:1px; background:var(--gold); margin:0 auto 24px;"></div>
+      <p style="font-size:14px; font-weight:300; color:rgba(255,255,255,0.6); line-height:2.1; letter-spacing:0.07em; margin-bottom:32px;">
+        十五会の上位組織として、岐阜実践経営塾（旧盛和塾岐阜）があります。<br>
+        経営者・経営幹部を対象に年5回、土曜日午後に開催する本格的な経営学習の場です。
+      </p>
+
+    </div>
+    <div class="reveal reveal-delay-1">
+      <p style="font-size:10px; letter-spacing:0.4em; color:var(--gold); margin-bottom:16px; text-transform:uppercase;">岐阜実践経営塾 開催スケジュール</p>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;">
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(201,168,76,0.1); padding:16px 18px;">
+          <p style="font-size:9px; letter-spacing:0.3em; color:var(--gold); margin-bottom:6px;">2026.04</p>
+          <p style="font-family:'Noto Serif JP',serif; font-size:13px; font-weight:600; color:rgba(255,255,255,0.8);">4月25日（土）</p>
+          <p style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:4px;">岐阜グランドホテル</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(201,168,76,0.1); padding:16px 18px;">
+          <p style="font-size:9px; letter-spacing:0.3em; color:var(--gold); margin-bottom:6px;">2026.06</p>
+          <p style="font-family:'Noto Serif JP',serif; font-size:13px; font-weight:600; color:rgba(255,255,255,0.8);">6月27日（土）</p>
+          <p style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:4px;">都ホテル</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(201,168,76,0.1); padding:16px 18px;">
+          <p style="font-size:9px; letter-spacing:0.3em; color:var(--gold); margin-bottom:6px;">2026.09</p>
+          <p style="font-family:'Noto Serif JP',serif; font-size:13px; font-weight:600; color:rgba(255,255,255,0.8);">9月19日（土）</p>
+          <p style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:4px;">都ホテル</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(201,168,76,0.1); padding:16px 18px;">
+          <p style="font-size:9px; letter-spacing:0.3em; color:var(--gold); margin-bottom:6px;">2026.11</p>
+          <p style="font-family:'Noto Serif JP',serif; font-size:13px; font-weight:600; color:rgba(255,255,255,0.8);">11月28日（土）</p>
+          <p style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:4px;">岐阜グランドホテル</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(201,168,76,0.1); padding:16px 18px;">
+          <p style="font-size:9px; letter-spacing:0.3em; color:var(--gold); margin-bottom:6px;">2027.02</p>
+          <p style="font-family:'Noto Serif JP',serif; font-size:13px; font-weight:600; color:rgba(255,255,255,0.8);">2月6日（土）</p>
+          <p style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:4px;">岐阜グランドホテル</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(201,168,76,0.1); padding:16px 18px; display:flex; align-items:center; justify-content:center;">
+          <a href="https://jissenkeiei.com" target="_blank" style="font-size:11px; color:var(--gold); text-decoration:none; letter-spacing:0.15em; border:1px solid rgba(201,168,76,0.4); padding:8px 16px;">お問い合わせ →</a>
+        </div>
+      </div>
+      <p style="font-size:11px; color:rgba(255,255,255,0.3); margin-top:14px; letter-spacing:0.08em;">※ 岐阜実践経営塾への入会には代表世話人の面接が必要となる場合がございます。詳細はお問い合わせください。</p>
+    </div>
+  </div>
+</section>
+
+
+<script>
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const spDrawer = document.getElementById('spDrawer');
+hamburgerBtn.addEventListener('click', () => {
+  const isOpen = spDrawer.classList.toggle('open');
+  hamburgerBtn.classList.toggle('open', isOpen);
+  hamburgerBtn.setAttribute('aria-expanded', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+document.querySelectorAll('.sp-menu-link').forEach(link => {
+  link.addEventListener('click', () => { spDrawer.classList.remove('open'); hamburgerBtn.classList.remove('open'); hamburgerBtn.setAttribute('aria-expanded', false); document.body.style.overflow = ''; });
+});
+document.addEventListener('click', (e) => {
+  if (spDrawer.classList.contains('open') && !spDrawer.contains(e.target) && !hamburgerBtn.contains(e.target)) { spDrawer.classList.remove('open'); hamburgerBtn.classList.remove('open'); hamburgerBtn.setAttribute('aria-expanded', false); document.body.style.overflow = ''; }
+});
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => { backToTop.classList.toggle('visible', window.scrollY > 400); });
+backToTop.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => { const href = a.getAttribute('href'); if (href === '#') return; const target = document.querySelector(href); if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } });
+});
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-menu a');
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + e.target.id ? 'var(--gold2)' : ''; }); } });
+}, { threshold: 0.4 });
+sections.forEach(s => sectionObserver.observe(s));
+
+/* ─── PARTICLE LINE ANIMATION ─── */
+(function(){
+  const hero = document.getElementById('hero');
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;';
+  hero.insertBefore(canvas, hero.firstChild);
+  const ctx = canvas.getContext('2d');
+
+  const COLORS = ['#5B4DFF','#00C2FF','#FF3CAF','#00D97E','#FF6B35'];
+  let W, H, particles;
+
+  function resize() {
+    W = canvas.width  = hero.offsetWidth;
+    H = canvas.height = hero.offsetHeight;
+    init();
+  }
+
+  function init() {
+    const count = Math.min(60, Math.floor(W * H / 18000));
+    particles = Array.from({length: count}, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.6,
+      r: Math.random() * 2.5 + 1.5,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const maxDist = 140;
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+
+      // 点
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color + 'CC';
+      ctx.fill();
+
+      // 線
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j];
+        const dx = p.x - q.x, dy = p.y - q.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < maxDist) {
+          const alpha = (1 - dist / maxDist) * 0.35;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = p.color + Math.floor(alpha * 255).toString(16).padStart(2,'0');
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+</script>
+</body>
+</html>
